@@ -1,0 +1,53 @@
+
+/*
+**Funktion som tar start, end och step som inparametrar.
+**Step är valbart alltså kräver inte funktionen att parametern måste vara med.
+**Dock så måste man hantera step om den inte är definerad
+*/
+function range(start, end, step){
+    //Tilldelar en variabel värdet av step
+    let stepnr = step;
+    //Kollar om step innehåller ett värde eller om den är null, alltså tom. Är den tom vill jag tilldela stepnr 1 eftersom det är 
+    //standardvärdet som forloopen ska öka med. innehåller step ett värde tilldelas detta till stepnr genonm else satsen. 
+    if(step == null){
+        stepnr = 1;
+    }else stepnr = step;
+    
+    let numbers = [];
+    //om stepnr är lika med 1 eller över kommer loopen köras som vanligt fast öka enligt det värde som stepnr innehåller.
+    if(stepnr >= 1){
+        for(let i = start; i <= end; i = i + stepnr)
+        {
+            numbers.push(i);
+        }
+    }
+    //Är stepnr under 1, alltså minus, kommer loopen istället att köra baklänges, i detta fallet måste även start vara högre än end. 
+    else {
+        for(let i = start; i >= end; i = i + stepnr)
+        {
+            numbers.push(i);
+        }
+    }
+    return numbers;
+}
+/*
+**Sum tar emot en numbers array som skapas i range funktionen, summan av värdena är initialt 0 i sumOfNr.
+**Lo0pen börjar på 0 och kör så länge i är mindre än längden på numbers.
+**I loopen tilldelar jag sumOfNr den aktuella totala summan + det värde som är på plats [i] i numbers.
+*/
+function sum(numbers)
+{
+    let sumOfNr = 0;
+    for(let i = 0; i < numbers.length; i++)
+        {
+            sumOfNr = sumOfNr + numbers[i];
+        }
+    return sumOfNr;
+}
+
+//console.log(range(1, 10));
+// → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+console.log(range(30, 2, -6));
+// → [5, 4, 3, 2]
+console.log(sum(range(1, 10)));
+// → 55
